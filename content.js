@@ -46,7 +46,7 @@ const content = {
     ]
   },
 
-  // --- GAME PROJECTS PAGE ---
+  // --- GAME PROJECTS PAGE ---     
   // ✏️ Write projects oldest first — the page shows them newest first automatically.
   // ✏️ image: put your thumbnail in the img/ folder, e.g. "img/game1.jpg". Leave "" if none.
   // ✏️ video: put your video file in the img/ folder, e.g. "img/game1.mp4". Leave "" if none.
