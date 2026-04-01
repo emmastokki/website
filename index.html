@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="gameprojects.html">Game Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CARD -->
+  <main>
+    <div class="card">
+
+      <!-- Name + tagline -->
+      <section class="hero">
+        <h1>Your Name</h1>
+        <p class="tagline">A short description about yourself — designer, developer, creator, or whatever fits you best.</p>
+      </section>
+
+      <!-- Three section links -->
+      <section class="sections">
+
+        <a href="portfolio.html" class="section-row">
+          <div class="thumb">
+            <img src="img/portfolio-thumb.jpg" alt="Portfolio" onerror="this.style.display='none'"/>
+            <div class="thumb-fallback">🖼</div>
+          </div>
+          <div class="section-text">
+            <h2>Portfolio</h2>
+            <p>A collection of my work — design, development, and creative projects.</p>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="gameprojects.html" class="section-row">
+          <div class="thumb">
+            <img src="img/games-thumb.jpg" alt="Game Projects" onerror="this.style.display='none'"/>
+            <div class="thumb-fallback">🎮</div>
+          </div>
+          <div class="section-text">
+            <h2>Game Projects</h2>
+            <p>Games I have built, prototyped, or collaborated on.</p>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="contact.html" class="section-row">
+          <div class="thumb">
+            <img src="img/contact-thumb.jpg" alt="Contact" onerror="this.style.display='none'"/>
+            <div class="thumb-fallback">✉️</div>
+          </div>
+          <div class="section-text">
+            <h2>Contact</h2>
+            <p>Get in touch — I would love to hear from you.</p>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>
