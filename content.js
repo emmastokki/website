@@ -7,8 +7,8 @@ const content = {
 
   // --- HOME PAGE ---
   home: {
-    name:    "Your Name",
-    tagline: "A short description about yourself — designer, developer, creator, or whatever fits you best."
+    name:    "Emma Stokki",
+    tagline: "Game Programmer"
   },
 
   // --- HOME PAGE: the three clickable section links ---
