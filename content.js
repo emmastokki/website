@@ -8,102 +8,124 @@ const content = {
   // --- HOME PAGE ---
   home: {
     name:    "Emma Stokki",
-    tagline: "Game Programmer"
+    tagline: "Game Programmer student at The Game Assembly, Stockholm"
   },
 
   // --- HOME PAGE: the three clickable section links ---
   sections: [
     {
-      title:       "Portfolio",
-      description: "A collection of my work — design, development, and creative projects.",
-      emoji:       "🖼",
+      title:       "Specialisation Project",
+      description: "",
+      //emoji:       "🖼",
+      image:       "img/grass2.png",
       link:        "portfolio.html"
     },
     {
       title:       "Game Projects",
-      description: "Games I have built, prototyped, or collaborated on.",
+      description: "Games I have collaborated on.",
       emoji:       "🎮",
       link:        "gameprojects.html"
     },
     {
-      title:       "Contact",
-      description: "Get in touch — I would love to hear from you.",
+      title:       "About Me & Contact",
+      description: "Get in touch - I would love to hear from you.",
       emoji:       "✉️",
       link:        "contact.html"
     }
   ],
 
-  // --- PORTFOLIO PAGE ---
+  // --- SPECIALISATION PROJECT PAGE ---
   portfolio: {
-    heading: "Portfolio",
-    intro:   "A selection of projects I have worked on.",
+    heading: "Specialisation Project",
+    intro:   "",
+    // ✏️ Paste a YouTube URL or a local file path e.g. "img/myvideo.mp4". Leave "" for placeholder.
+    video:   "img/spec_Inspelning.mp4",
     projects: [
       {
         title:       "Project Title",
-        description: "Short description of what this project is and what you did.",
+        description: "",
         emoji:       "🖼"
       }
     ]
   },
 
-  // --- GAME PROJECTS PAGE ---     
+  // --- GAME PROJECTS PAGE ---
   // ✏️ Write projects oldest first — the page shows them newest first automatically.
-  // ✏️ image: put your thumbnail in the img/ folder, e.g. "img/game1.jpg". Leave "" if none.
-  // ✏️ video: put your video file in the img/ folder, e.g. "img/game1.mp4". Leave "" if none.
-  //    Supported formats: .mp4 (recommended), .webm
+  // ✏️ image: put your thumbnail in the img/ folder. Leave "" if none.
+  // ✏️ youtube: paste the full YouTube URL. Leave "" if none.
+  //Games I have designed, developed, or contributed to.
   gameprojects: {
     heading: "Game Projects",
-    intro:   "Games I have designed, developed, or contributed to.",
+    intro:   "Games I have collaborated on.",
     projects: [
       {
-        title:       "Game Title 1",
+        title:       "Project 1 - BugBot",
         description: "Made in Unity.",
+        text:        "Engine: Unity\nTheme: Obstacle course\nLength/Time: 6 weeks, 15h/week",
         emoji:       "🎮",
-        image:       "img/Thumbnail_P1_G4.png",
-        video:       "img/SP1_G4_BugBot_Trailer.mp4"
+        image:       "img/Project1_Thumbnail.png",
+        youtube:     "",
+        video:       "img/Trailer1_BugBot.mp4"
       },
       {
-        title:       "Game Title 2",
+        title:       "Project 2 - SewerMasterchef",
         description: "Mobile game. Made in Unity.",
+        text:        "Engine: Unity\nTheme: Puzzle Mobile game\nLength/Time: 6 weeks, 15h/week",
         emoji:       "🎮",
-        image:       "img/Trailer_Thumbnail.png",
-        video:       "img/Trailer_SewerMasterchef_SP2G2.mp4"
+        image:       "img/Project2_Thumbnail.png",
+        youtube:     "",
+        video:       "img/Trailer2_SewerMasterchef.mp4"
       },
       {
         title:       "Project 3 - Blade of Will",
         description: "Made in TGE.",
+        text:        "Engine: TGE\nTheme: Platformer\nLength/Time: 12 weeks, 20h/week",
         emoji:       "🎮",
-        image:       "img/BladeOfWill_YoutubeThumbnail.png",
-        video:       "img/BladeOfWill_Trailer.mp4"
+        image:       "img/Project3_Thumbnail.png",
+        youtube:     "",
+        video:       "img/Trailer3_BladeOfWill.mp4"
       },
       {
         title:       "Project 4 - Cheff Jeff",
         description: "Made in TGE.",
+        text:        "Engine: TGE\nTheme: Adventure\nLength/Time: 8 weeks, 20h/week",
         emoji:       "🎮",
-        image:       "img/Trailer_Thumbnail_SP4_Gr6.png",
-        video:       "img/Trailer_SP4_Gr6.mp4"
+        image:       "img/Project4_Thumbnail.png",
+        youtube:     "",
+        video:       "img/Trailer4_CJ.mp4"
       },
       {
         title:       "Project 5 - Cycles Of Deluge",
         description: "Made in our own engine, No Carry Engine.",
+        text:        "Engine: No Carry\nTheme: Spite\nLength/Time: 14 weeks, 20h/week",
         emoji:       "🎮",
-        image:       "",
-        video:       "img/CoD_Trailer.mp4"
+        image:       "img/Project5_thumbnail.png",
+        youtube:     "",
+        video:       "img/Trailer5_CoD.mp4"
       },
       {
-        title:       "Game Title 6",
-        description: "WIP.",
+        title:       "Project 6 - Human Resources",
+        description: "WIP",
+        text:        "Engine: No Carry\nTheme: First Person Perspective\nLength/Time: 15 weeks, 20h/week",
         emoji:       "🎮",
         image:       "",
+        youtube:     "",
         video:       ""
       }
     ]
   },
 
-  // --- CONTACT PAGE ---
+  // --- ABOUT ME & CONTACT PAGE ---
   contact: {
-    heading: "Contact",
-    intro:   "Have a question or want to work together? Send me a message!"
+    heading: "About Me & Contact",
+    aboutHeading: "About Me",
+    // ✏️ Write your about me text here. Each entry becomes a paragraph.
+    aboutParagraphs: [
+      "---",
+      "I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15. Any internship offers can be made on April 27th, at the earliest."
+    ],
+    contactHeading: "Contact",
+    intro: ""
   }
 
 };

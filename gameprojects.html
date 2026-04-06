@@ -215,6 +215,25 @@
 
     .modal-close:hover { background: rgba(0,0,0,0.85); }
 
+    .back-to-top {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.35rem 0.9rem;
+      transition: background-color 0.15s, color 0.15s;
+    }
+
+    .back-to-top:hover {
+      background: #f0ede8;
+      color: var(--text-main);
+    }
+
     @media (max-width: 520px) {
       .game-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -256,9 +275,9 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="portfolio.html">Specialisation Project</a></li>
       <li><a href="gameprojects.html" class="active">Game Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html">About Me &amp; Contact</a></li>
     </ul>
   </nav>
 
@@ -281,14 +300,6 @@
     </div>
   </main>
 
-  <!-- Video modal -->
-  <div class="modal-overlay" id="modal" onclick="closeModalBackdrop(event)">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <video id="modal-video" controls></video>
-    </div>
-  </div>
-
   <script>
     const g = content.gameprojects;
     document.getElementById('page-heading').textContent = g.heading;
@@ -302,14 +313,12 @@
 
     projects.forEach((proj, i) => {
       const id = 'game-' + i;
-      const hasImage = proj.image && proj.image.length > 0;
-      const hasVideo = proj.video && proj.video.length > 0;
+      const hasImage   = proj.image && proj.image.length > 0;
+      const hasVideo   = proj.video && proj.video.length > 0;
 
       const thumbMedia = hasImage
         ? `<img src="${proj.image}" alt="${proj.title}" onerror="this.style.display='none'"/>`
         : `<span>${proj.emoji}</span>`;
-
-      const playBtnHTML = `<div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>`;
 
       // ── Grid card (links to section) ──
       grid.innerHTML += `
@@ -324,12 +333,8 @@
         </a>`;
 
       // ── Full section ──
-      const sectionMediaHTML = hasImage
-        ? `<img src="${proj.image}" alt="${proj.title}" onerror="this.style.display='none'"/>`
-        : `<span>${proj.emoji}</span>`;
-
       const sectionMedia = hasVideo
-        ? `<video controls style="width:75%;border-radius:12px;display:block;margin:0 auto;" poster="${proj.image || ''}">
+        ? `<video controls style="width:75%;border-radius:12px;display:block;margin:0 auto 1.5rem;" poster="${proj.image || ''}">
              <source src="${proj.video}">
            </video>`
         : `<div class="video-placeholder">
@@ -345,28 +350,11 @@
       sections.innerHTML += `
         <div class="game-section" id="${id}">
           <h2>${proj.title}</h2>
-          <p class="section-desc">${proj.description}</p>
           ${sectionMedia}
+          <p class="section-desc">${(proj.text || proj.description || '').replace(/\n/g, '<br>')}</p>
+          <a href="#game-grid" class="back-to-top">↑ Back to top</a>
         </div>`;
     });
-
-    function openModal(src) {
-      const video = document.getElementById('modal-video');
-      video.src = src;
-      video.load();
-      document.getElementById('modal').classList.add('open');
-    }
-
-    function closeModal() {
-      const video = document.getElementById('modal-video');
-      video.pause();
-      video.src = '';
-      document.getElementById('modal').classList.remove('open');
-    }
-
-    function closeModalBackdrop(e) {
-      if (e.target === document.getElementById('modal')) closeModal();
-    }
   </script>
 
 </body>

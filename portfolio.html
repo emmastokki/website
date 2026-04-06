@@ -3,57 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
+  <title>Specialisation Project</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <script src="content.js"></script>
   <style>
-    .project-single {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+
+    .article-section {
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .project-single .project-img {
+    .article-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .article-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .article-section p {
+      font-size: 0.93rem;
+      line-height: 1.85;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+
+    .article-section p:last-child { margin-bottom: 0; }
+
+    /* Video placeholder */
+    .video-placeholder {
       width: 100%;
       aspect-ratio: 16/9;
-      background: var(--thumb-bg);
+      background: #e8e4de;
       border-radius: 12px;
+      border: 2px dashed #c8c4be;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      overflow: hidden;
+      margin-bottom: 2.5rem;
     }
 
-    .project-single .project-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
+    .video-placeholder-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: #aaa;
     }
 
-    .project-single h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 400;
+    .video-placeholder-inner svg { width: 48px; height: 48px; }
+
+    .video-placeholder-inner span {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .project-single .project-desc {
+    /* MVP list */
+    .mvp-list {
+      list-style: none;
+      padding: 0;
+      margin: -0.2rem 0 0; /* ← change the first value (negative = pull up) to adjust space after subheading */
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .mvp-list li {
       font-size: 0.93rem;
-      color: var(--text-muted);
-      line-height: 1.75;
+      line-height: 1.5;
+      color: var(--text-main);
+      padding-left: 1.4rem;
+      position: relative;
     }
+
+    .mvp-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #a0997a;
+      font-weight: 600;
+    }
+
+    .mvp-list.nice li::before {
+      content: "◦";
+      color: #bbb;
+    }
+
+    .mvp-subheading {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 1.2rem 0 0.4rem; /* ← change middle value for space above, last value for space below */
+    }
+
+    .mvp-subheading:first-child { margin-top: 0; }
 
     /* Code block */
     .code-section {
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
+      margin-top: 1.2rem;
     }
 
     .code-label {
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -83,27 +147,78 @@
       transition: background 0.15s;
     }
 
-    .code-copy-btn:hover { background: #555; }
+    .code-copy-btn:hover  { background: #555; }
     .code-copy-btn.copied { background: #3a7d44; }
 
     pre {
       background: #1e1e2e;
       color: #cdd6f4;
       margin: 0;
-      padding: 1.2rem 1.2rem 1.2rem 1.4rem;
-      overflow-x: auto;
+      padding: 1.2rem 1.4rem;
+      overflow-y: auto;
+      max-height: 280px;
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       line-height: 1.7;
     }
 
-    /* simple syntax highlight colours */
-    .kw  { color: #cba6f7; } /* keywords */
-    .typ { color: #89b4fa; } /* types */
-    .cm  { color: #6c7086; font-style: italic; } /* comments */
-    .str { color: #a6e3a1; } /* strings */
-    .num { color: #fab387; } /* numbers */
-    .fn  { color: #89dceb; } /* function names */
+    .kw  { color: #cba6f7; }
+    .typ  { color: #89b4fa; }
+    .cm  { color: #6c7086; font-style: italic; }
+    .str { color: #a6e3a1; }
+    .num { color: #fab387; }
+    .fn  { color: #89dceb; }
+    .pun { color: #cdd6f4; }
+
+    /* Excel-style tile reference table */
+    .excel-table-wrap {
+      overflow-x: auto;
+      background: #1e1e2e;
+      padding: 1rem 1.2rem;
+      max-height: 340px;
+      overflow-y: auto;
+    }
+
+    .excel-table {
+      border-collapse: collapse;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #cdd6f4;
+      white-space: nowrap;
+    }
+
+    .excel-table th {
+      background: #2a2a3e;
+      padding: 0.35rem 0.7rem;
+      text-align: left;
+      border: 1px solid #3a3a4e;
+      color: #89b4fa;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+
+    .excel-table td {
+      padding: 0.25rem 0.7rem;
+      border: 1px solid #2e2e3e;
+    }
+
+    .excel-table tr:nth-child(even) td { background: #23233a; }
+
+    .excel-table tr.group-header td {
+      background: #2a2a3e;
+      color: #6c7086;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+
+    /* Direction colour coding */
+    .excel-table td.n, .excel-table td.s  { color: #a6e3a1; }
+    .excel-table td.e, .excel-table td.w  { color: #89b4fa; }
+    .excel-table td.nw, .excel-table td.ne,
+    .excel-table td.sw, .excel-table td.se { color: #fab387; }
   </style>
 </head>
 <body>
@@ -111,9 +226,9 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="portfolio.html" class="active">Specialisation Project</a></li>
       <li><a href="gameprojects.html">Game Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html">About Me &amp; Contact</a></li>
     </ul>
   </nav>
 
@@ -121,58 +236,441 @@
     <div class="card">
 
       <div class="page-header">
-        <h1 id="page-heading"></h1>
-        <p id="page-intro"></p>
+        <h1>Specialisation Project</h1>
+        <p>A grid-based world builder — farm edition</p>
       </div>
 
-      <div class="project-single">
+      <!-- VIDEO — set in content.js under portfolio.video -->
+      <div id="portfolio-video" style="margin-bottom:2.5rem;"></div>
 
-        <!-- PROJECT IMAGE -->
-        <div class="project-img">🖼</div>
+      <!-- SUMMARY -->
+      <div class="article-section">
+        <h2>About This Project</h2>
+        <p>
+          This project is part of a course in my education at The Game Assembly. The goal of the course is for students to plan and execute an independent project within a set time frame - approximately 80 hours in total, which includes the time spent building this website.
+        </p>
+        <p>
+          For my project I chose to build a small grid-based world builder with a farm theme. I wanted to work on something I found both interesting and fun - which was hard to find, since almost everything sounds interesting when it's new. My inspiration came from a lecture in an earlier course about procedurally generated maps and dungeons. I had a thought that the same underlying logic could be applied to tile placement on a grid, and that idea stuck with me. I have always loved games like Harvest Moon and Stardew Valley, so it felt natural to take the project in that direction on a small scale.
+        </p>
+      </div>
 
-        <!-- PROJECT TITLE & DESCRIPTION -->
-        <!-- ✏️ Edit title and description in content.js -->
-        <div>
-          <h2 id="proj-title"></h2>
-          <p class="project-desc" id="proj-desc"></p>
-        </div>
+      <!-- MVP -->
+      <div class="article-section">
+        <h2>MVP</h2>
+        <p>
+          These are the goals I set for this project. I was able to fulfil everything in my MVP list and a few from the Nice to Have list.
+        </p>
 
-        <!-- C++ CODE BLOCK -->
-        <!-- ✏️ Replace the code inside <pre> with your own C++ code -->
+        <p class="mvp-subheading">Grid &amp; Tiles</p>
+        <ul class="mvp-list">
+          <li>The grid size is determined by the resolution of the window.</li>
+          <li>There are at least three tile types to provide visual variation.</li>
+          <li>When a tile type is changed, its texture is determined by its neighbours. Neighbouring cells update automatically if necessary.</li>
+          <li>Hovering the mouse over a cell highlights it.</li>
+        </ul>
+
+        <p class="mvp-subheading">Objects &amp; Placement</p>
+        <ul class="mvp-list">
+          <li>Objects can be placed on the grid by selecting the correct tool.</li>
+          <li>A placed object blocks the ability to change the tile type of that cell.</li>
+          <li>Objects can be removed to unblock the cell.</li>
+          <li>Fences are the minimum object to implement. They tile in the same way as the grid.</li>
+        </ul>
+
+        <p class="mvp-subheading">Controls &amp; Interaction</p>
+        <ul class="mvp-list">
+          <li>The active action can be changed by switching tools - implemented via Dear ImGui.</li>
+          <li>A single click completes an action.</li>
+        </ul>
+
+        <p class="mvp-subheading" style="margin-top:1.5rem;">Nice to Have</p>
+        <ul class="mvp-list nice">
+          <li>Holding and dragging the mouse can change tiles and place fences.</li>
+          <li>At least one additional object type can be placed on the grid.</li>
+          <li>Seeds can be planted and grown into flowers.</li>
+          <li>Plants must be watered before they can grow.</li>
+          <li>A HUD for switching tools.</li>
+          <li>A controllable player character.</li>
+        </ul>
+      </div>
+
+      <!-- GRID -->
+      <div class="article-section">
+        <h2>Grid</h2>
+        <p>
+          I kept the grid setup simple and flexible. Rather than hard-coding a fixed size, the grid dimensions are calculated from the window resolution at initialisation - this way the grid always fills the available space without needing to be adjusted manually if the resolution changes.
+        </p>
+
         <div class="code-section">
-          <span class="code-label">C++ — Source Code</span>
+          <span class="code-label">C++ — Grid Setup</span>
           <div class="code-wrapper">
-            <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-            <pre id="code-block"><span class="cm">// Paste your C++ code here</span>
-<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+            <button class="code-copy-btn" onclick="copyCode('grid-code', this)">Copy</button>
+<pre id="grid-code"><span class="typ">float</span> <span class="pun">cellsForWidth  =</span> std<span class="pun">::</span><span class="fn">floor</span><span class="pun">(</span>aGridSizeWidth  <span class="pun">/</span> myCellWidth<span class="pun">);</span>
+<span class="typ">float</span> <span class="pun">cellsForHeight =</span> std<span class="pun">::</span><span class="fn">floor</span><span class="pun">(</span>aGridSizeHeight <span class="pun">/</span> myCellHeight<span class="pun">);</span>
+myGridWidth  <span class="pun">=</span> <span class="kw">static_cast</span><span class="pun">&lt;</span><span class="typ">int</span><span class="pun">&gt;(</span>cellsForWidth<span class="pun">);</span>
+myGridHeight <span class="pun">=</span> <span class="kw">static_cast</span><span class="pun">&lt;</span><span class="typ">int</span><span class="pun">&gt;(</span>cellsForHeight<span class="pun">);</span>
 
-<span class="kw">int</span> <span class="fn">main</span>() {
-    std::cout <span class="str">&lt;&lt; "Hello, World!" &lt;&lt;</span> std::endl;
-    <span class="kw">return</span> <span class="num">0</span>;
-}</pre>
+<span class="typ">float</span> gridSizeWidth  <span class="pun">= (</span>cellsForWidth  <span class="pun">*</span> myCellWidth<span class="pun">);</span>
+<span class="typ">float</span> gridSizeHeight <span class="pun">= (</span>cellsForHeight <span class="pun">*</span> myCellHeight<span class="pun">);</span>
+<span class="typ">float</span> diffWidth      <span class="pun">=</span> aGridSizeWidth  <span class="pun">-</span> gridSizeWidth<span class="pun">;</span>
+<span class="typ">float</span> diffHeight     <span class="pun">=</span> aGridSizeHeight <span class="pun">-</span> gridSizeHeight<span class="pun">;</span>
+
+<span class="kw">if</span> <span class="pun">(</span>diffWidth <span class="pun">&gt;</span> <span class="num">0</span><span class="pun">)</span>
+<span class="pun">{</span>
+    myGridStartPos<span class="pun">.</span>x <span class="pun">=</span> aStartPos<span class="pun">.</span>x <span class="pun">+ (</span>diffWidth <span class="pun">/</span> <span class="num">2</span><span class="pun">);</span>
+<span class="pun">}</span>
+<span class="kw">else</span>
+<span class="pun">{</span>
+    myGridStartPos<span class="pun">.</span>x <span class="pun">=</span> aStartPos<span class="pun">.</span>x<span class="pun">;</span>
+<span class="pun">}</span>
+<span class="kw">if</span> <span class="pun">(</span>diffHeight <span class="pun">&gt;</span> <span class="num">0</span><span class="pun">)</span>
+<span class="pun">{</span>
+    myGridStartPos<span class="pun">.</span>y <span class="pun">=</span> aStartPos<span class="pun">.</span>y <span class="pun">+ (</span>diffHeight <span class="pun">/</span> <span class="num">2</span><span class="pun">);</span>
+<span class="pun">}</span>
+<span class="kw">else</span>
+<span class="pun">{</span>
+    myGridStartPos<span class="pun">.</span>y <span class="pun">=</span> aStartPos<span class="pun">.</span>y<span class="pun">;</span>
+<span class="pun">}</span>
+myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <span class="pun">+</span> gridSizeWidth<span class="pun">,</span> aStartPos<span class="pun">.</span>y <span class="pun">+</span> gridSizeHeight <span class="pun">};</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- TILING -->
+      <div class="article-section">
+        <h2>Tiling</h2>
+        <p>
+          To begin, I had to figure out how many unique tile variations I needed and which directions each one responds to. I started with the path tile, since it requires the most variations - I wanted tiles that respond to all 8 surrounding cells, both orthogonal and diagonal. However, a diagonal neighbour is only considered valid if both of its adjacent orthogonal neighbours share the same tile type.
+        </p>
+        <p>
+          I did some research but could not find a complete guide that suited my needs, so I mapped it out in Excel to visualise the combinations myself. The result is 47 unique tile variations in total.
+        </p>
+
+        <!-- EXCEL TABLE -->
+        <div class="code-section">
+          <span class="code-label">Tile Variations — Excel Reference</span>
+          <div class="code-wrapper">
+            <div class="excel-table-wrap">
+              <table class="excel-table">
+                <thead>
+                  <tr><th>#</th><th colspan="8">Directions</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td colspan="8">Isolated</td></tr>
+                  <tr class="group-header"><td colspan="9">Singles</td></tr>
+                  <tr><td>1</td><td class="n">N</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>2</td><td class="w">W</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>3</td><td class="e">E</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>4</td><td class="s">S</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">Corners</td></tr>
+                  <tr><td>5</td><td class="n">N</td><td class="w">W</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>6</td><td class="n">N</td><td class="e">E</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>7</td><td class="s">S</td><td class="w">W</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>8</td><td class="s">S</td><td class="e">E</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">Straights</td></tr>
+                  <tr><td>9</td><td class="n">N</td><td class="s">S</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>10</td><td class="e">E</td><td class="w">W</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">T-Crossings</td></tr>
+                  <tr><td>11</td><td class="n">N</td><td class="w">W</td><td class="s">S</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>12</td><td class="n">N</td><td class="w">W</td><td class="e">E</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>13</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>14</td><td class="e">E</td><td class="w">W</td><td class="s">S</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">All Orthogonal</td></tr>
+                  <tr><td>15</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">Corners with 1 Diagonal</td></tr>
+                  <tr><td>16</td><td class="n">N</td><td class="w">W</td><td class="nw">NW</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>17</td><td class="n">N</td><td class="e">E</td><td class="ne">NE</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>18</td><td class="s">S</td><td class="w">W</td><td class="sw">SW</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>19</td><td class="s">S</td><td class="e">E</td><td class="se">SE</td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">T-Crossings with 1 Diagonal</td></tr>
+                  <tr><td>20</td><td class="n">N</td><td class="w">W</td><td class="s">S</td><td class="nw">NW</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>21</td><td class="n">N</td><td class="w">W</td><td class="s">S</td><td class="sw">SW</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>22</td><td class="n">N</td><td class="w">W</td><td class="e">E</td><td class="nw">NW</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>23</td><td class="n">N</td><td class="w">W</td><td class="e">E</td><td class="ne">NE</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>24</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="ne">NE</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>25</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="se">SE</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>26</td><td class="e">E</td><td class="w">W</td><td class="s">S</td><td class="sw">SW</td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td>27</td><td class="e">E</td><td class="w">W</td><td class="s">S</td><td class="se">SE</td><td></td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">T-Crossings with 2 Diagonals</td></tr>
+                  <tr><td>28</td><td class="n">N</td><td class="w">W</td><td class="s">S</td><td class="nw">NW</td><td class="sw">SW</td><td></td><td></td><td></td></tr>
+                  <tr><td>29</td><td class="n">N</td><td class="w">W</td><td class="e">E</td><td class="nw">NW</td><td class="ne">NE</td><td></td><td></td><td></td></tr>
+                  <tr><td>30</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="ne">NE</td><td class="se">SE</td><td></td><td></td><td></td></tr>
+                  <tr><td>31</td><td class="e">E</td><td class="w">W</td><td class="s">S</td><td class="sw">SW</td><td class="se">SE</td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">All Orthogonal + All Diagonals</td></tr>
+                  <tr><td>32</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="sw">SW</td><td class="ne">NE</td><td class="se">SE</td></tr>
+                  <tr class="group-header"><td colspan="9">All Orthogonal + 1 Diagonal</td></tr>
+                  <tr><td>33</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td></td><td></td><td></td></tr>
+                  <tr><td>34</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="ne">NE</td><td></td><td></td><td></td></tr>
+                  <tr><td>35</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="se">SE</td><td></td><td></td><td></td></tr>
+                  <tr><td>36</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="sw">SW</td><td></td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">All Orthogonal + 2 Diagonals</td></tr>
+                  <tr><td>37</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="ne">NE</td><td></td><td></td></tr>
+                  <tr><td>38</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="se">SE</td><td></td><td></td></tr>
+                  <tr><td>39</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="sw">SW</td><td></td><td></td></tr>
+                  <tr><td>40</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="ne">NE</td><td class="se">SE</td><td></td><td></td></tr>
+                  <tr><td>41</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="ne">NE</td><td class="sw">SW</td><td></td><td></td></tr>
+                  <tr><td>42</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="se">SE</td><td class="sw">SW</td><td></td><td></td></tr>
+                  <tr class="group-header"><td colspan="9">All Orthogonal + 3 Diagonals</td></tr>
+                  <tr><td>43</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="ne">NE</td><td class="sw">SW</td><td></td></tr>
+                  <tr><td>44</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="ne">NE</td><td class="se">SE</td><td></td></tr>
+                  <tr><td>45</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="nw">NW</td><td class="sw">SW</td><td class="se">SE</td><td></td></tr>
+                  <tr><td>46</td><td class="n">N</td><td class="e">E</td><td class="s">S</td><td class="w">W</td><td class="ne">NE</td><td class="sw">SW</td><td class="se">SE</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
+        <!-- EXCEL IMAGE -->
+        <div class="code-section" style="margin-top:1rem;">
+          <span class="code-label">Example — Corners with 1 Diagonal</span>
+          <div class="code-wrapper" style="padding:1rem 1.2rem; background:#1e1e2e;">
+            <img src="img/tiling_excel.png" alt="Excel tiling example"
+              style="max-width:100%;border-radius:6px;display:block;"
+              onerror="this.parentElement.innerHTML='<p style=\'color:#6c7086;font-size:0.82rem;padding:0.5rem;\'>Add your Excel screenshot as img/tiling_excel.png</p>'"/>
+          </div>
+        </div>
+
+        <p style="margin-top:1.5rem;">
+          To generate a unique index for each tile variation, each of the 8 neighbours is assigned a specific bit value. Checking all neighbours produces a bitmask that maps to a unique integer - this is then used to look up the correct sprite in a cached vector. The lookup table is initialised once at startup and maps every valid bit combination to its corresponding tile index.
+        </p>
+
+        <div class="code-section">
+          <span class="code-label">C++ — CalculateTileToPlace</span>
+          <div class="code-wrapper">
+            <button class="code-copy-btn" onclick="copyCode('tiling-code', this)">Copy</button>
+<pre id="tiling-code"><span class="kw">void</span> Grid<span class="pun">::</span><span class="fn">CalculateTileToPlace</span><span class="pun">(</span>GridCell<span class="pun">&amp;</span> aCell<span class="pun">,</span> <span class="typ">bool</span> aIsNeighbour<span class="pun">)</span>
+<span class="pun">{</span>
+    <span class="typ">int</span> index <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span>
+    <span class="kw">constexpr</span> <span class="typ">int</span> size <span class="pun">=</span> <span class="num">8</span><span class="pun">;</span> <span class="cm">// = aCell.neighbours.size()</span>
+    <span class="typ">bool</span> nIsSame<span class="pun">[</span>size<span class="pun">];</span>
+
+    <span class="kw">for</span> <span class="pun">(</span><span class="typ">int</span> i <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span> i <span class="pun">&lt;</span> size<span class="pun">;</span> i<span class="pun">++)</span>
+    <span class="pun">{</span>
+        <span class="cm">// A negative index means aCell is at the grid edge -</span>
+        <span class="cm">// no valid neighbour exists in this direction.</span>
+        <span class="kw">if</span> <span class="pun">(</span>aCell<span class="pun">.</span>neighbours<span class="pun">[</span>i<span class="pun">] &lt;</span> <span class="num">0</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            nIsSame<span class="pun">[</span>i<span class="pun">] =</span> <span class="kw">false</span><span class="pun">;</span>
+            <span class="kw">continue</span><span class="pun">;</span>
+        <span class="pun">}</span>
+        <span class="cm">// true if neighbour shares the same tile type</span>
+        nIsSame<span class="pun">[</span>i<span class="pun">] =</span> <span class="pun">(</span>myCells<span class="pun">[</span>aCell<span class="pun">.</span>neighbours<span class="pun">[</span>i<span class="pun">]].</span>tileType <span class="pun">==</span> aCell<span class="pun">.</span>tileType<span class="pun">);</span>
+    <span class="pun">}</span>
+
+    <span class="cm">// Build a bitmask from the 8 neighbours</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">0</span><span class="pun">])</span> index <span class="pun">|=</span>   <span class="num">1</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">1</span><span class="pun">])</span> index <span class="pun">|=</span>   <span class="num">2</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">2</span><span class="pun">])</span> index <span class="pun">|=</span>   <span class="num">4</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">3</span><span class="pun">])</span> index <span class="pun">|=</span>   <span class="num">8</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">4</span><span class="pun">])</span> index <span class="pun">|=</span>  <span class="num">16</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">5</span><span class="pun">])</span> index <span class="pun">|=</span>  <span class="num">32</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">6</span><span class="pun">])</span> index <span class="pun">|=</span>  <span class="num">64</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span><span class="num">7</span><span class="pun">])</span> index <span class="pun">|=</span> <span class="num">128</span><span class="pun">;</span>
+
+    <span class="cm">// Recursively update neighbours (only on the initial call)</span>
+    <span class="kw">if</span> <span class="pun">(!</span>aIsNeighbour<span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kw">for</span> <span class="pun">(</span><span class="typ">int</span> i <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span> i <span class="pun">&lt;</span> aCell<span class="pun">.</span>neighbours<span class="pun">.</span><span class="fn">size</span><span class="pun">();</span> i<span class="pun">++)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(</span>nIsSame<span class="pun">[</span>i<span class="pun">])</span>
+            <span class="pun">{</span>
+                <span class="fn">CalculateTileToPlace</span><span class="pun">(</span>myCells<span class="pun">[</span>aCell<span class="pun">.</span>neighbours<span class="pun">[</span>i<span class="pun">]],</span> <span class="kw">true</span><span class="pun">);</span>
+            <span class="pun">}</span>
+        <span class="pun">}</span>
+    <span class="pun">}</span>
+
+    aCell<span class="pun">.</span>tileIndex <span class="pun">=</span> myTileLUT<span class="pun">[</span>index<span class="pun">];</span>
+    aCell<span class="pun">.</span>backgroundSprite<span class="pun">.</span>sharedData <span class="pun">=</span> <span class="fn">GetATileSprite</span><span class="pun">(</span>aCell<span class="pun">.</span>tileType<span class="pun">,</span> aCell<span class="pun">.</span>tileIndex<span class="pun">);</span>
+<span class="pun">}</span></pre>
+          </div>
+        </div>
+
+        <div class="code-section">
+          <span class="code-label">C++ — InitTileLookupTable</span>
+          <div class="code-wrapper">
+            <button class="code-copy-btn" onclick="copyCode('lut-code', this)">Copy</button>
+<pre id="lut-code"><span class="typ">int</span> Grid<span class="pun">::</span><span class="fn">InitTileLookupTable</span><span class="pun">(</span><span class="typ">int</span> aMask<span class="pun">)</span>
+<span class="pun">{</span>
+    <span class="cm">// Normalise mask: a diagonal is only valid if both orthogonal neighbours are true</span>
+    <span class="typ">bool</span> north <span class="pun">=</span> aMask <span class="pun">&amp;</span> <span class="num">2</span><span class="pun">;</span>
+    <span class="typ">bool</span> east  <span class="pun">=</span> aMask <span class="pun">&amp;</span> <span class="num">16</span><span class="pun">;</span>
+    <span class="typ">bool</span> south <span class="pun">=</span> aMask <span class="pun">&amp;</span> <span class="num">64</span><span class="pun">;</span>
+    <span class="typ">bool</span> west  <span class="pun">=</span> aMask <span class="pun">&amp;</span> <span class="num">8</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(!(</span>north <span class="pun">&amp;&amp;</span> west<span class="pun">))</span>  aMask <span class="pun">&amp;= ~</span><span class="num">1</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(!(</span>north <span class="pun">&amp;&amp;</span> east<span class="pun">))</span>  aMask <span class="pun">&amp;= ~</span><span class="num">4</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(!(</span>south <span class="pun">&amp;&amp;</span> west<span class="pun">))</span>  aMask <span class="pun">&amp;= ~</span><span class="num">32</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(!(</span>south <span class="pun">&amp;&amp;</span> east<span class="pun">))</span>  aMask <span class="pun">&amp;= ~</span><span class="num">128</span><span class="pun">;</span>
+
+    <span class="typ">int</span>  mask      <span class="pun">=</span> aMask<span class="pun">;</span>
+    <span class="typ">bool</span> n  <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">2</span><span class="pun">,</span>  w  <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">8</span><span class="pun">;</span>
+    <span class="typ">bool</span> e  <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">16</span><span class="pun">,</span> s  <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">64</span><span class="pun">;</span>
+    <span class="typ">bool</span> nw <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">1</span><span class="pun">,</span>  ne <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">4</span><span class="pun">;</span>
+    <span class="typ">bool</span> sw <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">32</span><span class="pun">,</span> se <span class="pun">=</span> mask <span class="pun">&amp;</span> <span class="num">128</span><span class="pun">;</span>
+    <span class="typ">int</span> edgeCount <span class="pun">= (</span>n<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">) + (</span>w<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">) + (</span>e<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">) + (</span>s<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">);</span>
+    <span class="typ">int</span> diagCount <span class="pun">= (</span>nw<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">) + (</span>ne<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">) + (</span>sw<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">) + (</span>se<span class="pun">?</span><span class="num">1</span><span class="pun">:</span><span class="num">0</span><span class="pun">);</span>
+
+    <span class="kw">if</span> <span class="pun">(</span>edgeCount <span class="pun">==</span> <span class="num">0</span><span class="pun">)</span> <span class="kw">return</span> <span class="num">0</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>edgeCount <span class="pun">==</span> <span class="num">1</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kw">if</span> <span class="pun">(</span>n<span class="pun">)</span> <span class="kw">return</span> <span class="num">1</span><span class="pun">;</span>  <span class="kw">if</span> <span class="pun">(</span>w<span class="pun">)</span> <span class="kw">return</span> <span class="num">2</span><span class="pun">;</span>
+        <span class="kw">if</span> <span class="pun">(</span>e<span class="pun">)</span> <span class="kw">return</span> <span class="num">3</span><span class="pun">;</span>  <span class="kw">return</span> <span class="num">4</span><span class="pun">;</span>
+    <span class="pun">}</span>
+    <span class="kw">if</span> <span class="pun">(</span>edgeCount <span class="pun">==</span> <span class="num">2</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kw">if</span> <span class="pun">(</span>n <span class="pun">&amp;&amp;</span> s<span class="pun">)</span> <span class="kw">return</span> <span class="num">5</span><span class="pun">;</span>  <span class="kw">if</span> <span class="pun">(</span>e <span class="pun">&amp;&amp;</span> w<span class="pun">)</span> <span class="kw">return</span> <span class="num">6</span><span class="pun">;</span>
+        <span class="kw">if</span> <span class="pun">(</span>n <span class="pun">&amp;&amp;</span> w <span class="pun">&amp;&amp; !</span>nw<span class="pun">)</span> <span class="kw">return</span> <span class="num">7</span><span class="pun">;</span>   <span class="kw">if</span> <span class="pun">(</span>n <span class="pun">&amp;&amp;</span> e <span class="pun">&amp;&amp; !</span>ne<span class="pun">)</span> <span class="kw">return</span> <span class="num">8</span><span class="pun">;</span>
+        <span class="kw">if</span> <span class="pun">(</span>s <span class="pun">&amp;&amp;</span> w <span class="pun">&amp;&amp; !</span>sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">9</span><span class="pun">;</span>   <span class="kw">if</span> <span class="pun">(</span>s <span class="pun">&amp;&amp;</span> e <span class="pun">&amp;&amp; !</span>se<span class="pun">)</span> <span class="kw">return</span> <span class="num">10</span><span class="pun">;</span>
+        <span class="kw">if</span> <span class="pun">(</span>n <span class="pun">&amp;&amp;</span> w <span class="pun">&amp;&amp;</span> nw<span class="pun">)</span> <span class="kw">return</span> <span class="num">20</span><span class="pun">;</span>  <span class="kw">if</span> <span class="pun">(</span>n <span class="pun">&amp;&amp;</span> e <span class="pun">&amp;&amp;</span> ne<span class="pun">)</span> <span class="kw">return</span> <span class="num">21</span><span class="pun">;</span>
+        <span class="kw">if</span> <span class="pun">(</span>s <span class="pun">&amp;&amp;</span> w <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">22</span><span class="pun">;</span>  <span class="kw">if</span> <span class="pun">(</span>s <span class="pun">&amp;&amp;</span> e <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">23</span><span class="pun">;</span>
+    <span class="pun">}</span>
+    <span class="kw">if</span> <span class="pun">(</span>edgeCount <span class="pun">==</span> <span class="num">3</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">0</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(!</span>s<span class="pun">)</span> <span class="kw">return</span> <span class="num">11</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>e<span class="pun">)</span> <span class="kw">return</span> <span class="num">12</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(!</span>w<span class="pun">)</span> <span class="kw">return</span> <span class="num">13</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>n<span class="pun">)</span> <span class="kw">return</span> <span class="num">14</span><span class="pun">;</span>
+        <span class="pun">}</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">1</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(!</span>s <span class="pun">&amp;&amp;</span> nw<span class="pun">)</span> <span class="kw">return</span> <span class="num">24</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>s <span class="pun">&amp;&amp;</span> ne<span class="pun">)</span> <span class="kw">return</span> <span class="num">25</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(!</span>e <span class="pun">&amp;&amp;</span> nw<span class="pun">)</span> <span class="kw">return</span> <span class="num">26</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>e <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">27</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(!</span>w <span class="pun">&amp;&amp;</span> ne<span class="pun">)</span> <span class="kw">return</span> <span class="num">28</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>w <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">29</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(!</span>n <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">30</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>n <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">31</span><span class="pun">;</span>
+        <span class="pun">}</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">2</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(!</span>s<span class="pun">)</span> <span class="kw">return</span> <span class="num">16</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>e<span class="pun">)</span> <span class="kw">return</span> <span class="num">17</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(!</span>w<span class="pun">)</span> <span class="kw">return</span> <span class="num">18</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(!</span>n<span class="pun">)</span> <span class="kw">return</span> <span class="num">19</span><span class="pun">;</span>
+        <span class="pun">}</span>
+    <span class="pun">}</span>
+    <span class="kw">if</span> <span class="pun">(</span>edgeCount <span class="pun">==</span> <span class="num">4</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">0</span><span class="pun">)</span> <span class="kw">return</span> <span class="num">15</span><span class="pun">;</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">1</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(</span>nw<span class="pun">)</span> <span class="kw">return</span> <span class="num">32</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>ne<span class="pun">)</span> <span class="kw">return</span> <span class="num">33</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(</span>sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">34</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>se<span class="pun">)</span> <span class="kw">return</span> <span class="num">35</span><span class="pun">;</span>
+        <span class="pun">}</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">2</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(</span>nw <span class="pun">&amp;&amp;</span> ne<span class="pun">)</span> <span class="kw">return</span> <span class="num">36</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>ne <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">37</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(</span>se <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">38</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>nw <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">39</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(</span>nw <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">40</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>ne <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">41</span><span class="pun">;</span>
+        <span class="pun">}</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">3</span><span class="pun">)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(</span>nw <span class="pun">&amp;&amp;</span> ne <span class="pun">&amp;&amp;</span> sw<span class="pun">)</span> <span class="kw">return</span> <span class="num">42</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>nw <span class="pun">&amp;&amp;</span> ne <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">43</span><span class="pun">;</span>
+            <span class="kw">if</span> <span class="pun">(</span>nw <span class="pun">&amp;&amp;</span> sw <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">44</span><span class="pun">;</span> <span class="kw">if</span> <span class="pun">(</span>ne <span class="pun">&amp;&amp;</span> sw <span class="pun">&amp;&amp;</span> se<span class="pun">)</span> <span class="kw">return</span> <span class="num">45</span><span class="pun">;</span>
+        <span class="pun">}</span>
+        <span class="kw">if</span> <span class="pun">(</span>diagCount <span class="pun">==</span> <span class="num">4</span><span class="pun">)</span> <span class="kw">return</span> <span class="num">46</span><span class="pun">;</span>
+    <span class="pun">}</span>
+    <span class="kw">return</span> <span class="num">0</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+          </div>
+        </div>
+
+        <p style="margin-top:1.5rem;">
+          Once the tile logic was in place, applying the same system to fences was straightforward. The main difference is that fences only check the four orthogonal neighbours, not the diagonals, making it a simpler 4-bit check.
+        </p>
+
+        <div class="code-section">
+          <span class="code-label">C++ — CalculateFenceToPlace</span>
+          <div class="code-wrapper">
+            <button class="code-copy-btn" onclick="copyCode('fence-code', this)">Copy</button>
+<pre id="fence-code">std<span class="pun">::</span>shared_ptr<span class="pun">&lt;</span>Tga<span class="pun">::</span>SpriteSharedData<span class="pun">&gt;</span> Fence<span class="pun">::</span><span class="fn">CalculateFenceToPlace</span><span class="pun">(</span><span class="typ">int</span> aCellIndex<span class="pun">,</span> <span class="typ">bool</span> aIsNeighbour<span class="pun">)</span>
+<span class="pun">{</span>
+    <span class="kw">auto</span> gameScene <span class="pun">=</span> GameWorld<span class="pun">::</span><span class="fn">GetInstance</span><span class="pun">().</span><span class="fn">GetCurrentGameScene</span><span class="pun">().</span><span class="fn">lock</span><span class="pun">();</span>
+    <span class="kw">auto</span><span class="pun">&amp;</span> grid      <span class="pun">=</span> gameScene<span class="pun">-&gt;</span><span class="fn">GetGrid</span><span class="pun">();</span>
+    <span class="typ">int</span>  gridWidth  <span class="pun">=</span> grid<span class="pun">.</span><span class="fn">GetGridWidth</span><span class="pun">();</span>
+    <span class="typ">int</span>  column     <span class="pun">=</span> aCellIndex <span class="pun">%</span> gridWidth<span class="pun">;</span>
+    <span class="typ">int</span>  row        <span class="pun">=</span> aCellIndex <span class="pun">/</span> gridWidth<span class="pun">;</span>
+
+    <span class="kw">constexpr</span> <span class="typ">int</span> size <span class="pun">=</span> <span class="num">4</span><span class="pun">;</span>
+    <span class="typ">int</span> neighbourIndices<span class="pun">[</span>size<span class="pun">];</span>
+    neighbourIndices<span class="pun">[</span><span class="num">0</span><span class="pun">] = (</span>aCellIndex <span class="pun">+</span> gridWidth<span class="pun">) %</span> gridWidth <span class="pun">==</span> column <span class="pun">? (</span>aCellIndex <span class="pun">+</span> gridWidth<span class="pun">) : -</span><span class="num">1</span><span class="pun">;</span> <span class="cm">// N</span>
+    neighbourIndices<span class="pun">[</span><span class="num">1</span><span class="pun">] = (</span>aCellIndex <span class="pun">+</span> <span class="num">1</span><span class="pun">) /</span> gridWidth <span class="pun">==</span> row    <span class="pun">? (</span>aCellIndex <span class="pun">+</span> <span class="num">1</span><span class="pun">) : -</span><span class="num">1</span><span class="pun">;</span>         <span class="cm">// E</span>
+    neighbourIndices<span class="pun">[</span><span class="num">2</span><span class="pun">] = (</span>aCellIndex <span class="pun">-</span> gridWidth<span class="pun">) %</span> gridWidth <span class="pun">==</span> column <span class="pun">? (</span>aCellIndex <span class="pun">-</span> gridWidth<span class="pun">) : -</span><span class="num">1</span><span class="pun">;</span> <span class="cm">// S</span>
+    neighbourIndices<span class="pun">[</span><span class="num">3</span><span class="pun">] = (</span>aCellIndex <span class="pun">-</span> <span class="num">1</span><span class="pun">) /</span> gridWidth <span class="pun">==</span> row    <span class="pun">? (</span>aCellIndex <span class="pun">-</span> <span class="num">1</span><span class="pun">) : -</span><span class="num">1</span><span class="pun">;</span>         <span class="cm">// W</span>
+
+    <span class="typ">int</span>  index  <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span>
+    <span class="typ">bool</span> nSame<span class="pun">[</span>size<span class="pun">];</span>
+    <span class="kw">for</span> <span class="pun">(</span><span class="typ">int</span> i <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span> i <span class="pun">&lt;</span> size<span class="pun">;</span> i<span class="pun">++)</span>
+    <span class="pun">{</span>
+        <span class="kw">if</span> <span class="pun">(</span>neighbourIndices<span class="pun">[</span>i<span class="pun">] &lt;</span> <span class="num">0</span><span class="pun">)</span> <span class="pun">{</span> nSame<span class="pun">[</span>i<span class="pun">] =</span> <span class="kw">false</span><span class="pun">;</span> <span class="kw">continue</span><span class="pun">; }</span>
+        nSame<span class="pun">[</span>i<span class="pun">] =</span> <span class="pun">(</span>grid<span class="pun">.</span><span class="fn">GetGridCell</span><span class="pun">(</span>neighbourIndices<span class="pun">[</span>i<span class="pun">]).</span>cellType <span class="pun">==</span> CellType<span class="pun">::</span>Fence<span class="pun">);</span>
+    <span class="pun">}</span>
+    <span class="cm">// 4-bit bitmask: N=1, E=2, S=4, W=8</span>
+    <span class="kw">if</span> <span class="pun">(</span>nSame<span class="pun">[</span><span class="num">0</span><span class="pun">])</span> index <span class="pun">|=</span> <span class="num">1</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nSame<span class="pun">[</span><span class="num">1</span><span class="pun">])</span> index <span class="pun">|=</span> <span class="num">2</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nSame<span class="pun">[</span><span class="num">2</span><span class="pun">])</span> index <span class="pun">|=</span> <span class="num">4</span><span class="pun">;</span>
+    <span class="kw">if</span> <span class="pun">(</span>nSame<span class="pun">[</span><span class="num">3</span><span class="pun">])</span> index <span class="pun">|=</span> <span class="num">8</span><span class="pun">;</span>
+
+    <span class="kw">if</span> <span class="pun">(!</span>aIsNeighbour<span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kw">for</span> <span class="pun">(</span><span class="typ">int</span> i <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span> i <span class="pun">&lt;</span> size<span class="pun">;</span> i<span class="pun">++)</span>
+        <span class="pun">{</span>
+            <span class="kw">if</span> <span class="pun">(</span>nSame<span class="pun">[</span>i<span class="pun">])</span>
+            <span class="pun">{</span>
+                <span class="kw">auto</span><span class="pun">&amp;</span> otherObjects <span class="pun">=</span> gameScene<span class="pun">-&gt;</span><span class="fn">GetOtherGameObjects</span><span class="pun">();</span>
+                <span class="kw">auto</span> it <span class="pun">=</span> std<span class="pun">::</span><span class="fn">find_if</span><span class="pun">(</span>otherObjects<span class="pun">.</span><span class="fn">begin</span><span class="pun">(),</span> otherObjects<span class="pun">.</span><span class="fn">end</span><span class="pun">(),</span>
+                    <span class="pun">[&amp;](</span><span class="kw">const</span> std<span class="pun">::</span>shared_ptr<span class="pun">&lt;</span>GameObject2D<span class="pun">&gt;&amp;</span> obj<span class="pun">)</span>
+                    <span class="pun">{</span> <span class="kw">return</span> obj<span class="pun">-&gt;</span><span class="fn">GetGridIndex</span><span class="pun">() ==</span> neighbourIndices<span class="pun">[</span>i<span class="pun">]; });</span>
+                <span class="kw">if</span> <span class="pun">(</span>it <span class="pun">!=</span> otherObjects<span class="pun">.</span><span class="fn">end</span><span class="pun">())</span>
+                    <span class="pun">(*</span>it<span class="pun">)-&gt;</span><span class="fn">SetSpriteSharedData</span><span class="pun">(</span><span class="fn">CalculateFenceToPlace</span><span class="pun">(</span>neighbourIndices<span class="pun">[</span>i<span class="pun">],</span> <span class="kw">true</span><span class="pun">));</span>
+            <span class="pun">}</span>
+        <span class="pun">}</span>
+    <span class="pun">}</span>
+    <span class="kw">return</span> myCachedFenceSprites<span class="pun">[</span>myFenceLUT<span class="pun">[</span>index<span class="pun">]];</span>
+<span class="pun">}</span></pre>
+          </div>
+        </div>
       </div>
+
     </div>
   </main>
 
   <script>
-    const p = content.portfolio;
-    document.getElementById('page-heading').textContent = p.heading;
-    document.getElementById('page-intro').textContent   = p.intro;
+    // Load video from content.js
+    var pv = content.portfolio.video;
+    var videoDiv = document.getElementById('portfolio-video');
+    if (pv && pv.length > 0) {
+      var match = pv.match(/[?&]v=([^&]+)/);
+      if (match) {
+        // YouTube link
+        videoDiv.innerHTML =
+          '<div style="position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;">' +
+          '<iframe src="https://www.youtube.com/embed/' + match[1] + '" ' +
+          'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" ' +
+          'allowfullscreen loading="lazy" ' +
+          'allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture">' +
+          '</iframe></div>';
+      } else {
+        // Local video file
+        videoDiv.innerHTML =
+          '<video controls style="width:100%;border-radius:12px;display:block;">' +
+          '<source src="' + pv + '"></video>';
+      }
+    } else {
+      // Placeholder
+      videoDiv.innerHTML =
+        '<div class="video-placeholder">' +
+        '<div class="video-placeholder-inner">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
+        '<rect x="2" y="4" width="20" height="16" rx="3"/>' +
+        '<polygon points="9,8 17,12 9,16" fill="currentColor" stroke="none"/>' +
+        '</svg><span>Video coming soon</span></div></div>';
+    }
 
-    // Only show first project
-    const proj = p.projects[0];
-    document.getElementById('proj-title').textContent = proj.title;
-    document.getElementById('proj-desc').textContent  = proj.description;
-
-    function copyCode(btn) {
-      const text = document.getElementById('code-block').innerText;
-      navigator.clipboard.writeText(text).then(() => {
+    function copyCode(id, btn) {
+      var text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(function() {
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
       });
     }
   </script>

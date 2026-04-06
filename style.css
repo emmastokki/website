@@ -110,11 +110,11 @@ main {
 }
 
 .hero .tagline {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
-  max-width: 420px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
