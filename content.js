@@ -8,28 +8,35 @@ const content = {
   // --- HOME PAGE ---
   home: {
     name:    "Emma Stokki",
-    tagline: "Game Programmer student at The Game Assembly, Stockholm"
+    tagline: "Game Programmer"
   },
 
   // --- HOME PAGE: the three clickable section links ---
+  // ✏️ image: shown in the thumbnail. Leave "" for emoji only.
+  // ✏️ video: short clip that plays on hover. Leave "" for no video.
   sections: [
     {
-      title:       "Specialisation Project",
-      description: "",
-      //emoji:       "🖼",
-      image:       "img/grass2.png",
+      title:       "A grid-based world builder - farm edition",
+      description: "Specialisation Project",
+      emoji:       "🖼",
+      image:       "img/spec-preview_still.png",
+      video:       "img/spec-preview.mp4", //  e.g. "img/spec-preview.mp4"
       link:        "portfolio.html"
     },
     {
       title:       "Game Projects",
       description: "Games I have collaborated on.",
       emoji:       "🎮",
+      image:       "img/Project5_thumbnail.png",
+      video:       "img/games-preview.mp4", // ✏️ e.g. "img/games-preview.mp4"
       link:        "gameprojects.html"
     },
     {
       title:       "About Me & Contact",
       description: "Get in touch - I would love to hear from you.",
       emoji:       "✉️",
+      image:       "",
+      video:       "",
       link:        "contact.html"
     }
   ],
@@ -37,13 +44,13 @@ const content = {
   // --- SPECIALISATION PROJECT PAGE ---
   portfolio: {
     heading: "Specialisation Project",
-    intro:   "",
+    intro:   "A grid-based world builder - farm edition",
     // ✏️ Paste a YouTube URL or a local file path e.g. "img/myvideo.mp4". Leave "" for placeholder.
     video:   "img/spec_Inspelning.mp4",
     projects: [
       {
         title:       "Project Title",
-        description: "",
+        description: "Short description of what this project is and what you did.",
         emoji:       "🖼"
       }
     ]
@@ -53,7 +60,6 @@ const content = {
   // ✏️ Write projects oldest first — the page shows them newest first automatically.
   // ✏️ image: put your thumbnail in the img/ folder. Leave "" if none.
   // ✏️ youtube: paste the full YouTube URL. Leave "" if none.
-  //Games I have designed, developed, or contributed to.
   gameprojects: {
     heading: "Game Projects",
     intro:   "Games I have collaborated on.",
@@ -61,7 +67,7 @@ const content = {
       {
         title:       "Project 1 - BugBot",
         description: "Made in Unity.",
-        text:        "Engine: Unity\nTheme: Obstacle course\nLength/Time: 6 weeks, 15h/week",
+        text:        "Engine: Unity\nTheme: Obstacle course\nDuration: 6 weeks, 15h/week\nTasks: UI, Sound",
         emoji:       "🎮",
         image:       "img/Project1_Thumbnail.png",
         youtube:     "",
@@ -70,7 +76,7 @@ const content = {
       {
         title:       "Project 2 - SewerMasterchef",
         description: "Mobile game. Made in Unity.",
-        text:        "Engine: Unity\nTheme: Puzzle Mobile game\nLength/Time: 6 weeks, 15h/week",
+        text:        "Engine: Unity\nTheme: Puzzle Mobile game\nDuration: 6 weeks, 15h/week\nTasks: Puzzle triggers, UI, Sound, Tutorial",
         emoji:       "🎮",
         image:       "img/Project2_Thumbnail.png",
         youtube:     "",
@@ -79,7 +85,7 @@ const content = {
       {
         title:       "Project 3 - Blade of Will",
         description: "Made in TGE.",
-        text:        "Engine: TGE\nTheme: Platformer\nLength/Time: 12 weeks, 20h/week",
+        text:        "Engine: TGE\nTheme: Platformer\nDuration: 12 weeks, 20h/week\nTasks: Collision system, UI, PickUp ",
         emoji:       "🎮",
         image:       "img/Project3_Thumbnail.png",
         youtube:     "",
@@ -88,7 +94,7 @@ const content = {
       {
         title:       "Project 4 - Cheff Jeff",
         description: "Made in TGE.",
-        text:        "Engine: TGE\nTheme: Adventure\nLength/Time: 8 weeks, 20h/week",
+        text:        "Engine: TGE\nTheme: Adventure\nDuration: 8 weeks, 20h/week\nTasks: UI",
         emoji:       "🎮",
         image:       "img/Project4_Thumbnail.png",
         youtube:     "",
@@ -96,8 +102,8 @@ const content = {
       },
       {
         title:       "Project 5 - Cycles Of Deluge",
-        description: "Made in our own engine, No Carry Engine.",
-        text:        "Engine: No Carry\nTheme: Spite\nLength/Time: 14 weeks, 20h/week",
+        description: "Made in our own custom engine, No Carry Engine.",
+        text:        "Engine: No Carry\nTheme: Spite\nDuration: 14 weeks, 20h/week\nTasks: Animation system, UI, VFX",
         emoji:       "🎮",
         image:       "img/Project5_thumbnail.png",
         youtube:     "",
@@ -106,9 +112,9 @@ const content = {
       {
         title:       "Project 6 - Human Resources",
         description: "WIP",
-        text:        "Engine: No Carry\nTheme: First Person Perspective\nLength/Time: 15 weeks, 20h/week",
+        text:        "Engine: No Carry\nTheme: First Person Perspective\nDuration: 15 weeks, 20h/week",
         emoji:       "🎮",
-        image:       "",
+        image:       "img/Korvar.png",
         youtube:     "",
         video:       ""
       }
@@ -121,7 +127,7 @@ const content = {
     aboutHeading: "About Me",
     // ✏️ Write your about me text here. Each entry becomes a paragraph.
     aboutParagraphs: [
-      "---",
+      "I’m a Game Programming student at The Game Assembly, a higher vocational school.\nI’ve loved playing video games for as long as I can remember, as cliché as that might sound, and this education has been a great introduction to this wonderful world of game development.\nAside from gaming, I spend a lot of time on different creative hobbies like knitting, sewing, drawing, and honestly anything else that falls into that category. I enjoy creating things, whether it’s digital or something I can hold in my hands.",
       "I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15. Any internship offers can be made on April 27th, at the earliest."
     ],
     contactHeading: "Contact",

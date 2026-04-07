@@ -171,7 +171,7 @@
     c.aboutParagraphs.forEach(function(text, i) {
       var p = document.createElement('p');
       if (i === c.aboutParagraphs.length - 1) p.className = 'notice';
-      p.textContent = text;
+      p.innerHTML = text.replace(/\n/g, '<br>');
       aboutDiv.appendChild(p);
     });
 

@@ -236,8 +236,9 @@
     <div class="card">
 
       <div class="page-header">
-        <h1>Specialisation Project</h1>
-        <p>A grid-based world builder — farm edition</p>
+        <h1>A grid-based world builder</h1>
+        <p style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:300; color:var(--text-muted); margin-top:0.3rem;">farm edition</p>
+        <p style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-top:0.5rem;">Specialisation Project</p>
       </div>
 
       <!-- VIDEO — set in content.js under portfolio.video -->
@@ -447,7 +448,7 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
 
     <span class="kw">for</span> <span class="pun">(</span><span class="typ">int</span> i <span class="pun">=</span> <span class="num">0</span><span class="pun">;</span> i <span class="pun">&lt;</span> size<span class="pun">;</span> i<span class="pun">++)</span>
     <span class="pun">{</span>
-        <span class="cm">// A negative index means aCell is at the grid edge -</span>
+        <span class="cm">// A negative index means aCell is at the grid edge</span>
         <span class="cm">// no valid neighbour exists in this direction.</span>
         <span class="kw">if</span> <span class="pun">(</span>aCell<span class="pun">.</span>neighbours<span class="pun">[</span>i<span class="pun">] &lt;</span> <span class="num">0</span><span class="pun">)</span>
         <span class="pun">{</span>
@@ -627,6 +628,17 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
         </div>
       </div>
 
+      <!-- CONCLUSION -->
+      <div class="article-section">
+        <h2>Conclusion</h2>
+        <p>
+          I'm very glad I chose this project for my Specialisation. I learned more than I initially expected and had a lot of fun throughout the process.
+        </p>
+        <p>
+          During the development of this project, I encountered a number of technical problems along the way, which I really enjoyed solving. It felt rewarding to take an idea and gradually turn it into something functional. If I had more time, I would love to continue expanding the world and adding more features such as a player and interactive mechanics.
+        </p>
+      </div>
+
     </div>
   </main>
 
@@ -646,9 +658,9 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
           'allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture">' +
           '</iframe></div>';
       } else {
-        // Local video file
+        // Local video file — autoplay muted (required by browsers), with controls
         videoDiv.innerHTML =
-          '<video controls style="width:100%;border-radius:12px;display:block;">' +
+          '<video autoplay muted loop controls style="width:100%;border-radius:12px;display:block;">' +
           '<source src="' + pv + '"></video>';
       }
     } else {

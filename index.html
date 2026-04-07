@@ -7,6 +7,40 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <script src="content.js"></script>
+  <style>
+    /* Video inside the thumbnail */
+    .thumb video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    }
+
+    /* Show video and hide image on hover */
+    .section-row:hover .thumb video { opacity: 1; visibility: visible; 
+}
+    .section-row:hover .thumb img   { opacity: 0; }
+    /*.section-row:hover .thumb-fallback { opacity: 0; }*/
+
+    .section-row.has-video:hover .thumb video {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .section-row.has-video:hover .thumb img,
+    .section-row.has-video:hover .thumb-fallback { opacity: 0;}
+
+
+
+    .thumb img {
+      transition: opacity 0.3s;
+    }
+  </style>
 </head>
 <body>
 
@@ -35,19 +69,50 @@
     document.title = content.home.name + ' – Portfolio';
 
     const list = document.getElementById('sections-list');
-   content.sections.forEach(s => {
-      const thumbContent = s.image
-        ? `<img src="${s.image}" alt="${s.title}" onerror="this.style.display='none'"/><div class="thumb-fallback">${s.emoji || ''}</div>`
+
+    content.sections.forEach(s => {
+      const hasImage = s.image && s.image.length > 0;
+      const hasVideo = s.video && s.video.length > 0;
+
+      const imgHTML = hasImage
+        ? `<img src="${s.image}" alt="${s.title}" onerror="this.style.display='none'"/>`
         : `<div class="thumb-fallback">${s.emoji || ''}</div>`;
-      list.innerHTML += `
-        <a href="${s.link}" class="section-row">
-          <div class="thumb">${thumbContent}</div>
-          <div class="section-text">
-            <h2>${s.title}</h2>
-            <p>${s.description}</p>
-          </div>
-          <span class="arrow">→</span>
-        </a>`;
+
+      // Video autoplays silently when hovered — set via JS after insert
+      const videoHTML = hasVideo
+        ? `<video src="${s.video}" muted loop playsinline preload="none"></video>`
+        : '';
+
+      const row = document.createElement('a');
+      row.href = s.link;
+      row.className = 'section-row';
+      row.innerHTML = `
+        <div class="thumb">
+          ${imgHTML}
+          ${videoHTML}
+        </div>
+        <div class="section-text">
+          <h2>${s.title}</h2>
+          <p>${s.description}</p>
+        </div>
+        <span class="arrow">→</span>`;
+
+      // Play video on hover, pause on leave
+      /*if (hasVideo) {
+        const vid = row.querySelector('video');
+        row.addEventListener('mouseenter', () => { vid.play(); });
+        row.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+      }*/
+
+      if (hasVideo) {
+      row.classList.add('has-video'); // 👈 NY
+
+      const vid = row.querySelector('video');
+      row.addEventListener('mouseenter', () => { vid.play(); });
+      row.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+      }
+
+      list.appendChild(row);
     });
   </script>
 
