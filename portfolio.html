@@ -432,12 +432,15 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
           </div>
         </div>
 
+        <!-- TILING VIDEO — set via content.js portfolio.videoTiling -->
+        <div id="video-tiling" style="margin-top:1rem;"></div>
+
         <p style="margin-top:1.5rem;">
           To generate a unique index for each tile variation, each of the 8 neighbours is assigned a specific bit value. Checking all neighbours produces a bitmask that maps to a unique integer - this is then used to look up the correct sprite in a cached vector. The lookup table is initialised once at startup and maps every valid bit combination to its corresponding tile index.
         </p>
 
         <div class="code-section">
-          <span class="code-label">C++ — CalculateTileToPlace</span>
+          <span class="code-label">C++ — Calculate which tile sprite to use</span>
           <div class="code-wrapper">
             <button class="code-copy-btn" onclick="copyCode('tiling-code', this)">Copy</button>
 <pre id="tiling-code"><span class="kw">void</span> Grid<span class="pun">::</span><span class="fn">CalculateTileToPlace</span><span class="pun">(</span>GridCell<span class="pun">&amp;</span> aCell<span class="pun">,</span> <span class="typ">bool</span> aIsNeighbour<span class="pun">)</span>
@@ -488,7 +491,7 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
         </div>
 
         <div class="code-section">
-          <span class="code-label">C++ — InitTileLookupTable</span>
+          <span class="code-label">C++ — Init Tile Lookup Table</span>
           <div class="code-wrapper">
             <button class="code-copy-btn" onclick="copyCode('lut-code', this)">Copy</button>
 <pre id="lut-code"><span class="typ">int</span> Grid<span class="pun">::</span><span class="fn">InitTileLookupTable</span><span class="pun">(</span><span class="typ">int</span> aMask<span class="pun">)</span>
@@ -575,8 +578,11 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
           Once the tile logic was in place, applying the same system to fences was straightforward. The main difference is that fences only check the four orthogonal neighbours, not the diagonals, making it a simpler 4-bit check.
         </p>
 
+        <!-- FENCE VIDEO — set via content.js portfolio.videoFence -->
+        <div id="video-fence" style="margin-top:1rem;margin-bottom:0.5rem;"></div>
+
         <div class="code-section">
-          <span class="code-label">C++ — CalculateFenceToPlace</span>
+          <span class="code-label">C++ — Calculate which fence sprite to use</span>
           <div class="code-wrapper">
             <button class="code-copy-btn" onclick="copyCode('fence-code', this)">Copy</button>
 <pre id="fence-code">std<span class="pun">::</span>shared_ptr<span class="pun">&lt;</span>Tga<span class="pun">::</span>SpriteSharedData<span class="pun">&gt;</span> Fence<span class="pun">::</span><span class="fn">CalculateFenceToPlace</span><span class="pun">(</span><span class="typ">int</span> aCellIndex<span class="pun">,</span> <span class="typ">bool</span> aIsNeighbour<span class="pun">)</span>
@@ -643,7 +649,27 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
   </main>
 
   <script>
-    // Load video from content.js
+    function loadVideo(divId, src) {
+      var div = document.getElementById(divId);
+      if (!div) return;
+      if (!src || src.length === 0) return; // no video set — show nothing
+      var match = src.match(/[?&]v=([^&]+)/);
+      if (match) {
+        div.innerHTML =
+          '<div style="position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;">' +
+          '<iframe src="https://www.youtube.com/embed/' + match[1] + '" ' +
+          'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" ' +
+          'allowfullscreen loading="lazy" ' +
+          'allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture">' +
+          '</iframe></div>';
+      } else {
+        div.innerHTML =
+          '<video controls style="width:30%;border-radius:12px;display:block;margin:0 auto;">' +
+          '<source src="' + src + '"></video>';
+      }
+    }
+
+    // Main top video
     var pv = content.portfolio.video;
     var videoDiv = document.getElementById('portfolio-video');
     if (pv && pv.length > 0) {
@@ -685,6 +711,10 @@ myGridEndPos <span class="pun">= {</span> aStartPos<span class="pun">.</span>x <
         }, 2000);
       });
     }
+
+    // Inline tiling and fence videos
+    loadVideo('video-tiling', content.portfolio.videoTiling);
+    loadVideo('video-fence',  content.portfolio.videoFence);
   </script>
 
 </body>
