@@ -8,34 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <script src="content.js"></script>
   <style>
-    /* Video inside the thumbnail */
+    /* Video inside the thumbnail — hidden by default */
     .thumb video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
 
-    /* Show video and hide image on hover */
-    .section-row:hover .thumb video { opacity: 1; visibility: visible; 
-}
-    .section-row:hover .thumb img   { opacity: 0; }
-    /*.section-row:hover .thumb-fallback { opacity: 0; }*/
-
+    /* Only show video / hide image when the row has a video */
     .section-row.has-video:hover .thumb video {
       opacity: 1;
       visibility: visible;
     }
 
     .section-row.has-video:hover .thumb img,
-    .section-row.has-video:hover .thumb-fallback { opacity: 0;}
-
-
+    .section-row.has-video:hover .thumb-fallback {
+      opacity: 0;
+    }
 
     .thumb img {
       transition: opacity 0.3s;
@@ -78,7 +72,6 @@
         ? `<img src="${s.image}" alt="${s.title}" onerror="this.style.display='none'"/>`
         : `<div class="thumb-fallback">${s.emoji || ''}</div>`;
 
-      // Video autoplays silently when hovered — set via JS after insert
       const videoHTML = hasVideo
         ? `<video src="${s.video}" muted loop playsinline preload="none"></video>`
         : '';
@@ -97,19 +90,11 @@
         </div>
         <span class="arrow">→</span>`;
 
-      // Play video on hover, pause on leave
-      /*if (hasVideo) {
+      if (hasVideo) {
+        row.classList.add('has-video');
         const vid = row.querySelector('video');
         row.addEventListener('mouseenter', () => { vid.play(); });
         row.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
-      }*/
-
-      if (hasVideo) {
-      row.classList.add('has-video'); // 👈 NY
-
-      const vid = row.querySelector('video');
-      row.addEventListener('mouseenter', () => { vid.play(); });
-      row.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
       }
 
       list.appendChild(row);

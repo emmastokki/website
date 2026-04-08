@@ -35,7 +35,7 @@ const content = {
       title:       "About Me & Contact",
       description: "Get in touch - I would love to hear from you.",
       emoji:       "✉️",
-      image:       "",
+      image:       "img/letter.png",
       video:       "",
       link:        "contact.html"
     }
