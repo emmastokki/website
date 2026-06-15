@@ -150,7 +150,7 @@
             <a href="CV_Emma_Stokki.pdf" download class="contact-link-inner">
               <div class="contact-icon">&#x1F4C4;</div>
               <div>
-                <div class="contact-label">Resume</div>
+                <div class="contact-label">CV</div>
                 <div class="contact-value">Download PDF</div>
               </div>
             </a>
@@ -170,7 +170,6 @@
     var aboutDiv = document.getElementById('about-text');
     c.aboutParagraphs.forEach(function(text, i) {
       var p = document.createElement('p');
-      if (i === c.aboutParagraphs.length - 1) p.className = 'notice';
       p.innerHTML = text.replace(/\n/g, '<br>');
       aboutDiv.appendChild(p);
     });

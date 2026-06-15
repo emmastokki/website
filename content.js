@@ -27,8 +27,8 @@ const content = {
       title:       "Game Projects",
       description: "Games I have collaborated on.",
       emoji:       "🎮",
-      image:       "img/Project5_thumbnail.png",
-      video:       "img/games-preview.mp4", // ✏️ e.g. "img/games-preview.mp4"
+      image:       "img/thumbnail_P7.png",
+      video:       "img/games-preview_v2.mp4", // ✏️ e.g. "img/games-preview.mp4"
       link:        "gameprojects.html"
     },
     {
@@ -123,8 +123,8 @@ const content = {
       },
       {
         title:       "Project 5 - Cycles Of Deluge",
-        description: "Made in our own custom engine, No Carry Engine.",
-        text:        "Engine: No Carry\nTheme: Spite\nDuration: 14 weeks, 20h/week\nContributions: Animation system, UI, VFX",
+        description: "Made in custom engine, No Carry Engine.",
+        text:        "Engine: No Carry Engine\nTheme: Spite\nDuration: 14 weeks, 20h/week\nContributions: Animation system, UI, VFX",
         emoji:       "🎮",
         image:       "img/Project5_thumbnail.png",
         youtube:     "",
@@ -132,12 +132,23 @@ const content = {
       },
       {
         title:       "Project 6 - Human Resources",
-        description: "WIP",
-        text:        "Engine: No Carry\nTheme: First Person Perspective\nDuration: 15 weeks, 20h/week\nWIP",
+        description: "Made in custom engine, No Carry Engine.",
+        text:        "Engine: No Carry Engine\nTheme: First Person Perspective\nDuration: 15 weeks, 20h/week\nnContributions: Player movement (PhysX), Gameplay mechanics",
         emoji:       "🎮",
-        image:       "img/Korvar.png",
+        image:       "",
         youtube:     "",
-        video:       ""
+        video:       "img/Trailer_P6.mp4"
+      },
+       {
+        title:       "Project 7 - Milk of Tomorrow",
+        description: "Made in custom engine, No Carry Engine.",
+        text:        "Engine: No Carry Engine\nTheme: \nDuration: 9 weeks, 40h/week\nContributions: PhysX character controller, NPC spline pathing, Spline editor tool",
+        //Write your longer description here.\n\nYou can have multiple paragraphs by adding \\n\\n between them.
+        details:     "",
+        emoji:       "🎮",
+        image:       "img/thumbnail_P7.png",
+        youtube:     "",
+        video:       "img/Trailer_final_Milk.mp4"
       }
     ]
   },
@@ -148,8 +159,7 @@ const content = {
     aboutHeading: "About Me",
     // ✏️ Write your about me text here. Each entry becomes a paragraph.
     aboutParagraphs: [
-      "I'm a Game Programming student at The Game Assembly, a higher vocational school.\nI've loved playing video games for as long as I can remember, as cliché as that might sound, and this education has been a great introduction to this wonderful world of game development.\nAside from gaming, I spend a lot of time on different creative hobbies like knitting, sewing, drawing, and honestly anything else that falls into that category. I enjoy creating things, whether it's digital or something I can hold in my hands.",
-      "I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15. Any internship offers can be made on April 27th, at the earliest."
+      "I'm a Game Programming student at The Game Assembly, a higher vocational school.\nI've loved playing video games for as long as I can remember, as cliché as that might sound, and this education has been a great introduction to this wonderful world of game development.\nAside from gaming, I spend a lot of time on different creative hobbies like knitting, sewing, drawing, and honestly anything else that falls into that category. I enjoy creating things, whether it's digital or something I can hold in my hands."
     ],
     contactHeading: "Contact",
     intro: ""
